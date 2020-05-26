@@ -93,6 +93,13 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 
 static struct argp argp = {options, parse_opt, args_doc, doc};
 
+
+int err_abort(int status, char *message) {
+  fprintf(stderr, "%s\n", message);
+  exit(status);
+  return 0;
+}
+
 void timer_callback(union sigval arg) {
   int error;
 
@@ -212,11 +219,6 @@ int main(int argc, char **argv) {
 
   printf("Finshed\n");
 
-  return;
-}
-
-int err_abort(int status, char *message) {
-  fprintf(stderr, "%s\n", message);
-  exit(status);
   return 0;
 }
+
